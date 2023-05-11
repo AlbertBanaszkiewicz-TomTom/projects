@@ -1,0 +1,396 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E44A7BB02A0A650100711446 /* disk_sizesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A7BAF2A0A650100711446 /* disk_sizesApp.swift */; };
+		E44A7BB22A0A650100711446 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A7BB12A0A650100711446 /* ContentView.swift */; };
+		E44A7BB42A0A650200711446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44A7BB32A0A650200711446 /* Assets.xcassets */; };
+		E44A7BB72A0A650200711446 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44A7BB62A0A650200711446 /* Preview Assets.xcassets */; };
+		E44A7BBF2A0A7ACE00711446 /* diskinfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = E44A7BBE2A0A7ACE00711446 /* diskinfo.mm */; };
+		E4E459522A0D053400A08818 /* diskinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E459512A0D053400A08818 /* diskinfo.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E44A7BAC2A0A650100711446 /* disk-sizes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "disk-sizes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E44A7BAF2A0A650100711446 /* disk_sizesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = disk_sizesApp.swift; sourceTree = "<group>"; };
+		E44A7BB12A0A650100711446 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E44A7BB32A0A650200711446 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E44A7BB62A0A650200711446 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E44A7BBD2A0A7ACE00711446 /* disk-sizes-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "disk-sizes-Bridging-Header.h"; sourceTree = "<group>"; };
+		E44A7BBE2A0A7ACE00711446 /* diskinfo.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = diskinfo.mm; sourceTree = "<group>"; };
+		E44A7BC02A0A7B0E00711446 /* diskinfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = diskinfo.h; sourceTree = "<group>"; };
+		E4E459512A0D053400A08818 /* diskinfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = diskinfo.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E44A7BA92A0A650100711446 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E44A7BA32A0A650100711446 = {
+			isa = PBXGroup;
+			children = (
+				E44A7BAE2A0A650100711446 /* disk-sizes */,
+				E44A7BAD2A0A650100711446 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E44A7BAD2A0A650100711446 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E44A7BAC2A0A650100711446 /* disk-sizes.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E44A7BAE2A0A650100711446 /* disk-sizes */ = {
+			isa = PBXGroup;
+			children = (
+				E44A7BAF2A0A650100711446 /* disk_sizesApp.swift */,
+				E44A7BB12A0A650100711446 /* ContentView.swift */,
+				E44A7BB32A0A650200711446 /* Assets.xcassets */,
+				E44A7BB52A0A650200711446 /* Preview Content */,
+				E44A7BBE2A0A7ACE00711446 /* diskinfo.mm */,
+				E44A7BBD2A0A7ACE00711446 /* disk-sizes-Bridging-Header.h */,
+				E44A7BC02A0A7B0E00711446 /* diskinfo.h */,
+				E4E459512A0D053400A08818 /* diskinfo.swift */,
+			);
+			path = "disk-sizes";
+			sourceTree = "<group>";
+		};
+		E44A7BB52A0A650200711446 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E44A7BB62A0A650200711446 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E44A7BAB2A0A650100711446 /* disk-sizes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E44A7BBA2A0A650200711446 /* Build configuration list for PBXNativeTarget "disk-sizes" */;
+			buildPhases = (
+				E44A7BA82A0A650100711446 /* Sources */,
+				E44A7BA92A0A650100711446 /* Frameworks */,
+				E44A7BAA2A0A650100711446 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "disk-sizes";
+			productName = "disk-sizes";
+			productReference = E44A7BAC2A0A650100711446 /* disk-sizes.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E44A7BA42A0A650100711446 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					E44A7BAB2A0A650100711446 = {
+						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
+					};
+				};
+			};
+			buildConfigurationList = E44A7BA72A0A650100711446 /* Build configuration list for PBXProject "disk-sizes" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E44A7BA32A0A650100711446;
+			productRefGroup = E44A7BAD2A0A650100711446 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E44A7BAB2A0A650100711446 /* disk-sizes */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E44A7BAA2A0A650100711446 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E44A7BB72A0A650200711446 /* Preview Assets.xcassets in Resources */,
+				E44A7BB42A0A650200711446 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E44A7BA82A0A650100711446 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4E459522A0D053400A08818 /* diskinfo.swift in Sources */,
+				E44A7BB22A0A650100711446 /* ContentView.swift in Sources */,
+				E44A7BB02A0A650100711446 /* disk_sizesApp.swift in Sources */,
+				E44A7BBF2A0A7ACE00711446 /* diskinfo.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E44A7BB82A0A650200711446 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E44A7BB92A0A650200711446 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E44A7BBB2A0A650200711446 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"disk-sizes/Preview Content\"";
+				DEVELOPMENT_TEAM = P2HF3859N4;
+				ENABLE_PREVIEWS = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
+					"DEBUG=1",
+					$PREPROCESSOR_DEFINITIONS_boost_boost,
+					"$(inherited)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = $HEADER_SEARCH_PATHS_boost_boost;
+				HEADER_SEARCH_PATHS_boost_boost = "";
+				"HEADER_SEARCH_PATHS_boost_boost[sdk=iphoneos*]" = "\"/Users/banaszki/.conan/data/boost/3.3.2+1.81.0/tomtom/stable/package/e35e15f8896f691b6b8caea97b1bb0a7adda8836/include\"";
+				"HEADER_SEARCH_PATHS_boost_boost[sdk=iphonesimulator*]" = "\"/Users/banaszki/.conan/data/boost/3.3.2+1.81.0/tomtom/stable/package/c06ee2971d0e60983d173c2be1267b1619e4785e/include\"";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = $LIBRARY_SEARCH_PATHS_boost_boost;
+				LIBRARY_SEARCH_PATHS_boost_boost = "";
+				"LIBRARY_SEARCH_PATHS_boost_boost[sdk=iphoneos*]" = "\"/Users/banaszki/.conan/data/boost/3.3.2+1.81.0/tomtom/stable/package/e35e15f8896f691b6b8caea97b1bb0a7adda8836/lib\"";
+				"LIBRARY_SEARCH_PATHS_boost_boost[sdk=iphonesimulator*]" = "\"/Users/banaszki/.conan/data/boost/3.3.2+1.81.0/tomtom/stable/package/c06ee2971d0e60983d173c2be1267b1619e4785e/lib\"";
+				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = $OTHER_LDFLAGS_boost_boost;
+				OTHER_LDFLAGS_boost_boost = "";
+				"OTHER_LDFLAGS_boost_boost[arch=*]" = "-lboost_container -lboost_exception -lboost_log -lboost_program_options -lboost_random -lboost_regex -lboost_serialization -lboost_wserialization -lboost_coroutine -lboost_fiber -lboost_context -lboost_thread -lboost_chrono -lboost_date_time -lboost_atomic -lboost_filesystem -lboost_system -lboost_json -lboost_log_setup -lboost_nowide -lboost_url";
+				PREPROCESSOR_DEFINITIONS_boost_boost = "";
+				"PREPROCESSOR_DEFINITIONS_boost_boost[sdk=iphoneos*]" = BOOST_USE_STATIC_LIBS;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tomtom.disk-sizes";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "disk-sizes/disk-sizes-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E44A7BBC2A0A650200711446 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"disk-sizes/Preview Content\"";
+				DEVELOPMENT_TEAM = P2HF3859N4;
+				ENABLE_PREVIEWS = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = $PREPROCESSOR_DEFINITIONS_boost_boost;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = $HEADER_SEARCH_PATHS_boost_boost;
+				HEADER_SEARCH_PATHS_boost_boost = "";
+				"HEADER_SEARCH_PATHS_boost_boost[sdk=iphoneos*]" = "\"/Users/banaszki/.conan/data/boost/3.3.2+1.81.0/tomtom/stable/package/e35e15f8896f691b6b8caea97b1bb0a7adda8836/include\"";
+				"HEADER_SEARCH_PATHS_boost_boost[sdk=iphonesimulator*]" = "\"/Users/banaszki/.conan/data/boost/3.3.2+1.81.0/tomtom/stable/package/c06ee2971d0e60983d173c2be1267b1619e4785e/include\"";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = $LIBRARY_SEARCH_PATHS_boost_boost;
+				LIBRARY_SEARCH_PATHS_boost_boost = "";
+				"LIBRARY_SEARCH_PATHS_boost_boost[sdk=iphoneos*]" = "\"/Users/banaszki/.conan/data/boost/3.3.2+1.81.0/tomtom/stable/package/e35e15f8896f691b6b8caea97b1bb0a7adda8836/lib\"";
+				"LIBRARY_SEARCH_PATHS_boost_boost[sdk=iphonesimulator*]" = "\"/Users/banaszki/.conan/data/boost/3.3.2+1.81.0/tomtom/stable/package/c06ee2971d0e60983d173c2be1267b1619e4785e/lib\"";
+				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = $OTHER_LDFLAGS_boost_boost;
+				OTHER_LDFLAGS_boost_boost = "";
+				"OTHER_LDFLAGS_boost_boost[arch=*]" = "-lboost_container -lboost_exception -lboost_log -lboost_program_options -lboost_random -lboost_regex -lboost_serialization -lboost_wserialization -lboost_coroutine -lboost_fiber -lboost_context -lboost_thread -lboost_chrono -lboost_date_time -lboost_atomic -lboost_filesystem -lboost_system -lboost_json -lboost_log_setup -lboost_nowide -lboost_url";
+				PREPROCESSOR_DEFINITIONS_boost_boost = "";
+				"PREPROCESSOR_DEFINITIONS_boost_boost[arch=*]" = BOOST_USE_STATIC_LIBS;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tomtom.disk-sizes";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "disk-sizes/disk-sizes-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E44A7BA72A0A650100711446 /* Build configuration list for PBXProject "disk-sizes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E44A7BB82A0A650200711446 /* Debug */,
+				E44A7BB92A0A650200711446 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E44A7BBA2A0A650200711446 /* Build configuration list for PBXNativeTarget "disk-sizes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E44A7BBB2A0A650200711446 /* Debug */,
+				E44A7BBC2A0A650200711446 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E44A7BA42A0A650100711446 /* Project object */;
+}
