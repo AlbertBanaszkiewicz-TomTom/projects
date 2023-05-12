@@ -85,17 +85,12 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-fileprivate func getDocumentsDirectory() -> URL {
-    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-    return paths[0]
-}
-
 fileprivate func deleteFile(errorMessage: Binding<String?>?) {
-    let filename = getDocumentsDirectory().appendingPathComponent("output.txt", isDirectory: false)
+    let filename = getOutputDirectoryUrl().appendingPathComponent("output.txt", isDirectory: false)
     do {
         try FileManager.default.removeItem(at: filename)
     } catch let error {
-        print("error occurred, here are the details:\n \(error)")
+        print(error)
         errorMessage?.wrappedValue = error.localizedDescription
     }
 }
@@ -103,7 +98,7 @@ fileprivate func deleteFile(errorMessage: Binding<String?>?) {
 fileprivate func writeFile(size: Measurement<UnitInformationStorage>, writeProgess: Binding<Double>, errorMessage: Binding<String?>) {
     deleteFile(errorMessage: nil)
     
-    let filename = getDocumentsDirectory().appendingPathComponent("output.txt", isDirectory: false)
+    let filename = getOutputDirectoryUrl().appendingPathComponent("output.txt", isDirectory: false)
 
     var megabyteOfData: [UInt8] = []
     for i in 0..<1024*1024 {

@@ -11,7 +11,12 @@
 }
 
 + (double) getAvailabeSpaceBoostCPP {
-    return boost::filesystem::space(".").available * 1.0f;
+    std::string path = std::string([NSHomeDirectory() UTF8String]);
+    
+    //boost::filesystem::path path = boost::filesystem::path(NSHomeDirectory().to);
+    boost::filesystem::space_info space = boost::filesystem::space(path);
+    
+    return space.free * 1.0f;
 }
 
 @end

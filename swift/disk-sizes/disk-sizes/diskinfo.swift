@@ -7,8 +7,12 @@
 
 import Foundation
 
+func getOutputDirectoryUrl() -> URL {
+    FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+}
+
 func getAvailableSizeAvailableCapacityForImportantUsageSwift() -> Measurement<UnitInformationStorage>? {
-    let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    let url = getOutputDirectoryUrl()
     do {
         let values = try url.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
         if let capacity = values.volumeAvailableCapacityForImportantUsage {
@@ -23,7 +27,7 @@ func getAvailableSizeAvailableCapacityForImportantUsageSwift() -> Measurement<Un
 }
 
 func getAvailableSizeVolumeAvailableCapacitySwift() -> Measurement<UnitInformationStorage>? {
-    let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    let url = getOutputDirectoryUrl()
     do {
         let values = try url.resourceValues(forKeys: [.volumeAvailableCapacityKey])
         if let capacity = values.volumeAvailableCapacity {
