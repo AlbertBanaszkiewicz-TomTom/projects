@@ -7,8 +7,13 @@
 
 import SwiftUI
 
+struct DownloadedFile: Identifiable {
+    let id: Int
+    var url: URL
+    var size: Measurement<UnitInformationStorage>
+}
+
 struct ContentView: View {
-    
     func refresh() {
         print("Refreshing...")
         availableSizeAvailableCapacityForImportantUsageSwift = formatSize(getAvailableSizeAvailableCapacityForImportantUsageSwift())
@@ -24,59 +29,122 @@ struct ContentView: View {
             Text("VolumeAvailableCapacity\t\t: \(availableSizeVolumeAvailableCapacitySwift)")
             Text("NSFileSystem\t\t\t\t\t: \(availableSizeNSFileSystemFreeSizeObjC)")
             Text("Available (Boost)\t\t\t\t: \(availableSizeBoostCpp)")
+            Text("")
             
-            HStack {
-                Text("Allocate space:")
-                TextField("in GB", value: $spaceToAllocate, format: .number)
-                    .textFieldStyle(.roundedBorder)
-                    .padding()
+            VStack {
+                HStack {
+                    Button("Refresh") {
+                        lastErrorMessage = nil
+                        processingQueue.async {
+                            refresh()
+                        }
+                    }
+                }
+                .disabled(writeProgess != 0.0)
+                .padding()
                 
-                Button("Allocate") {
-                    lastErrorMessage = nil
-                    processingQueue.async{
-                        writeFile(size: Measurement(value: Double(spaceToAllocate), unit: UnitInformationStorage.gigabytes), writeProgess: $writeProgess, errorMessage: $lastErrorMessage)
+                HStack {
+                    Text("Write")
+                    Picker("Select amount to write", selection: $amountToWrite) {
+                        ForEach(amountsToWrite.sorted { $0.1 < $1.1 }, id: \.key) { key, value in
+                            Text(key).tag(value)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    
+                    Button("Write") {
+                        lastErrorMessage = nil
+                        processingQueue.async {
+                            writer.deleteFile(errorMessage: nil)
+                            writer.writeFile(size: Measurement(value: Double(amountToWrite), unit: UnitInformationStorage.gigabytes), writeProgess: $writeProgess, errorMessage: $lastErrorMessage)
+                            refresh()
+                        }
+                    }
+                    
+                    Button("Clear") {
+                        lastErrorMessage = nil
+                        writer.deleteFile(errorMessage: $lastErrorMessage)
                         refresh()
                     }
+                    
+                    Spacer()
                 }
                 .disabled(writeProgess != 0.0)
-               
-                Button("Refresh") {
-                    lastErrorMessage = nil
-                    processingQueue.async{
+                
+                HStack {
+                    Text("Download")
+                    Picker("Select amount to download", selection: $amountToDownload) {
+                        ForEach(amountsToDownload.sorted { $0 < $1 }, id: \.key) { key, value in
+                            Text(key).tag(value)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    
+                    Button("Download") {
+                        lastErrorMessage = nil
+                        processingQueue.async {
+                            downloader.downloadFile(url: URL(string: amountToDownload)!, downloadProgess: $writeProgess, downloadedFiles: $downloadedFiles, errorMessage: $lastErrorMessage)
+                        }
+                    }
+                    
+                    Button("Clear") {
+                        lastErrorMessage = nil
                         refresh()
                     }
+                    
+                    Spacer()
                 }
                 .disabled(writeProgess != 0.0)
-              
-                Button("Clear") {
-                    lastErrorMessage = nil
-                    processingQueue.async{
-                        deleteFile(errorMessage: $lastErrorMessage)
-                        refresh()
+                
+                Table(downloadedFiles, selection: $selectedDownloadedFile) {
+                    TableColumn("Size in GB") { file in
+                        VStack {
+                            Text("\(formatSize(file.size))")
+                            Text("\(file.url.absoluteString)")
+                                .foregroundStyle(.tertiary)
+                        }
                     }
                 }
-                .disabled(writeProgess != 0.0)
+                
+                Text("")
+                
+                ProgressView("Writing data \(Int(writeProgess))%...", value: writeProgess, total: 100)
+                    .opacity(writeProgess == 0.0 ? 0.0 : 1.0)
+                
+                Text("Error: \(lastErrorMessage ?? "None")")
+                    .foregroundColor(.red)
+                    .opacity(lastErrorMessage == nil ? 0.0 : 1.0)
             }
-            
-            ProgressView("Writing data \(Int(writeProgess))%...", value: writeProgess, total: 100)
-                .opacity(writeProgess == 0.0 ? 0.0 : 1.0)
-            
-            Text("Error: \(lastErrorMessage ?? "None")")
-                .foregroundColor(.red)
-                .opacity(lastErrorMessage == nil ? 0.0 : 1.0)
         }
         .padding()
     }
     
-    @State private var spaceToAllocate = 2
+    @State private var amountToWrite = 1
+    @State private var amountToDownload = "https://link.testfile.org/15MB"
     @State private var availableSizeAvailableCapacityForImportantUsageSwift = formatSize(nil)
     @State private var availableSizeVolumeAvailableCapacitySwift = formatSize(nil)
     @State private var availableSizeNSFileSystemFreeSizeObjC = formatSize(nil)
     @State private var availableSizeBoostCpp = formatSize(nil)
     @State private var writeProgess = 0.0
+    @State private var downloadProgess = 0.0
     @State private var lastErrorMessage: String?
+    @State private var downloadedFiles: [DownloadedFile] = []
+    @State private var selectedDownloadedFile: DownloadedFile.ID?
     
     private let processingQueue = DispatchQueue(label: "disk_sizes")
+    private let amountsToWrite = ["1 GB" : 1,
+                                  "5 GB" : 5,
+                                  "10 GB" : 10,
+                                  "20 GB" : 20,
+                                  "30 GB" : 30,
+                                  "40 GB" : 40,
+                                  "50 GB" : 50]
+    private let amountsToDownload = ["0.015 GB" : "https://link.testfile.org/15MB",
+                                     "0.5 GB" : "https://link.testfile.org/500MB",
+                                     "1 GB" : "https://mmatechnical.com/Download/Download-Test-File/(MMA)-1GB.zip",
+                                     "10 GB": "https://bit.ly/10GbOVHserver"]
+    private let writer = Writer()
+    private let downloader = Downloader()
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -84,50 +152,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
-fileprivate func deleteFile(errorMessage: Binding<String?>?) {
-    let filename = getOutputDirectoryUrl().appendingPathComponent("output.txt", isDirectory: false)
-    do {
-        try FileManager.default.removeItem(at: filename)
-    } catch let error {
-        print(error)
-        errorMessage?.wrappedValue = error.localizedDescription
-    }
-}
-
-fileprivate func writeFile(size: Measurement<UnitInformationStorage>, writeProgess: Binding<Double>, errorMessage: Binding<String?>) {
-    deleteFile(errorMessage: nil)
-    
-    let filename = getOutputDirectoryUrl().appendingPathComponent("output.txt", isDirectory: false)
-
-    var megabyteOfData: [UInt8] = []
-    for i in 0..<1024*1024 {
-        megabyteOfData.append(UInt8(i % 0xff))
-    }
-    
-    let data = Data(bytes: &megabyteOfData, count: megabyteOfData.count * MemoryLayout<UInt8>.stride)
-
-    do {
-        let chunks = Int(size.converted(to: UnitInformationStorage.megabytes).value)
-        
-        writeProgess.wrappedValue = 0.0
-        try data.write(to: filename, options: .atomicWrite)
-        
-        let fileHandle = try FileHandle(forWritingTo: filename)
-        for i in 2...chunks {
-            try fileHandle.write(contentsOf: data)
-            writeProgess.wrappedValue = Double(i * 100 / chunks)
-        }
-        try fileHandle.close()
-    }
-    catch {
-        print(error)
-        errorMessage.wrappedValue = error.localizedDescription
-    }
-    
-    writeProgess.wrappedValue = 0.0
-}
-
 
 fileprivate func formatSize(_ size: Measurement<UnitInformationStorage>?) -> String {
     let formatter = MeasurementFormatter()

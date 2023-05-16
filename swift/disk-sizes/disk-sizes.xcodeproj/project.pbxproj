@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E412A35C2A12868500086619 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E412A35B2A12868500086619 /* Downloader.swift */; };
+		E412A35E2A136EA900086619 /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E412A35D2A136EA900086619 /* Writer.swift */; };
 		E44A7BB02A0A650100711446 /* disk_sizesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A7BAF2A0A650100711446 /* disk_sizesApp.swift */; };
 		E44A7BB22A0A650100711446 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A7BB12A0A650100711446 /* ContentView.swift */; };
 		E44A7BB42A0A650200711446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44A7BB32A0A650200711446 /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E412A35B2A12868500086619 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
+		E412A35D2A136EA900086619 /* Writer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Writer.swift; sourceTree = "<group>"; };
 		E44A7BAC2A0A650100711446 /* disk-sizes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "disk-sizes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44A7BAF2A0A650100711446 /* disk_sizesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = disk_sizesApp.swift; sourceTree = "<group>"; };
 		E44A7BB12A0A650100711446 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +69,8 @@
 				E44A7BBD2A0A7ACE00711446 /* disk-sizes-Bridging-Header.h */,
 				E44A7BC02A0A7B0E00711446 /* diskinfo.h */,
 				E4E459512A0D053400A08818 /* diskinfo.swift */,
+				E412A35B2A12868500086619 /* Downloader.swift */,
+				E412A35D2A136EA900086619 /* Writer.swift */,
 			);
 			path = "disk-sizes";
 			sourceTree = "<group>";
@@ -148,6 +154,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E412A35E2A136EA900086619 /* Writer.swift in Sources */,
+				E412A35C2A12868500086619 /* Downloader.swift in Sources */,
 				E4E459522A0D053400A08818 /* diskinfo.swift in Sources */,
 				E44A7BB22A0A650100711446 /* ContentView.swift in Sources */,
 				E44A7BB02A0A650100711446 /* disk_sizesApp.swift in Sources */,
