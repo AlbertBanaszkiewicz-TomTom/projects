@@ -62,7 +62,6 @@ struct ContentView: View {
                     }
                     
                     Button("Clear") {
-                        lastErrorMessage = nil
                         writer.deleteFile(errorMessage: $lastErrorMessage)
                         refresh()
                     }
@@ -70,6 +69,13 @@ struct ContentView: View {
                     Spacer()
                 }
                 .disabled(writeProgess != 0.0)
+                
+                VStack(alignment: .leading) {
+                    Text("Location:")
+                    Text("\(writer.path)")
+                        .foregroundStyle(.secondary)
+                        .foregroundColor(writer.outputExists() ? .black : .red)
+                }
                 
                 HStack {
                     Text("Download")
@@ -87,14 +93,19 @@ struct ContentView: View {
                         }
                     }
                     
-                    Button("Clear") {
+                    Button("Delete") {
                         lastErrorMessage = nil
+                        downloader.deleteFile(id: selectedDownloadedFile!, downloadedFiles: $downloadedFiles, errorMessage: $lastErrorMessage)
+                        selectedDownloadedFile = nil
                         refresh()
                     }
+                    .disabled(selectedDownloadedFile == nil)
+                    .opacity(selectedDownloadedFile == nil ? 0.5 : 1)
                     
                     Spacer()
                 }
                 .disabled(writeProgess != 0.0)
+                
                 
                 Table(downloadedFiles, selection: $selectedDownloadedFile) {
                     TableColumn("Size in GB") { file in
@@ -135,13 +146,18 @@ struct ContentView: View {
     private let amountsToWrite = ["1 GB" : 1,
                                   "5 GB" : 5,
                                   "10 GB" : 10,
+                                  "15 GB" : 15,
                                   "20 GB" : 20,
+                                  "25 GB" : 25,
                                   "30 GB" : 30,
+                                  "35 GB" : 35,
                                   "40 GB" : 40,
+                                  "45 GB" : 45,
                                   "50 GB" : 50]
     private let amountsToDownload = ["0.015 GB" : "https://link.testfile.org/15MB",
                                      "0.5 GB" : "https://link.testfile.org/500MB",
-                                     "1 GB" : "https://mmatechnical.com/Download/Download-Test-File/(MMA)-1GB.zip",
+                                     "1 GB" : "https://bit.ly/1GB-testfile",
+                                     "5 GB": "https://bit.ly/5GB-TESTFILE-ORG",
                                      "10 GB": "https://bit.ly/10GbOVHserver"]
     private let writer = Writer()
     private let downloader = Downloader()

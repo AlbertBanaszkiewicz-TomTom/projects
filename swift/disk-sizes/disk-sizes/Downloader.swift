@@ -47,6 +47,20 @@ public class Downloader {
         task?.resume()
     }
     
+    func deleteFile(id: Int, downloadedFiles: Binding<[DownloadedFile]>, errorMessage: Binding<String?>) {
+        downloadedFiles.wrappedValue = downloadedFiles.wrappedValue.filter{
+            let found = $0.id != id
+            if found {
+                do {
+                    try FileManager.default.removeItem(at: $0.url)
+                } catch let error {
+                    errorMessage.wrappedValue = error.localizedDescription
+                }
+            }
+            return found
+        }
+    }
+    
     public var downloadTmpUrls: [URL : Measurement<UnitInformationStorage>] = [:]
     
     private var task: URLSessionDownloadTask?
