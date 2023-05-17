@@ -9,8 +9,9 @@ import Foundation
 import SwiftUI
 
 public class Downloader {
-    func downloadFile(url: URL, downloadProgess: Binding<Double>, downloadedFiles: Binding<[DownloadedFile]>, errorMessage: Binding<String?>) {
+    func downloadFile(url: URL, downloadProgess: Binding<Double>, downloadedFiles: Binding<[DownloadedFile]>, action: ActionAfterDownload, errorMessage: Binding<String?>) {
         print("Downloading: \(url)")
+        print("After download do: \(action)")
         task = URLSession.shared.downloadTask(with: url) { localURL, urlResponse, error in
             if let localURL = localURL, error == nil {
                 if let statusCode = (urlResponse as? HTTPURLResponse)?.statusCode {
@@ -21,16 +22,33 @@ public class Downloader {
                 
                 let fileSize = try? FileManager.default.attributesOfItem(atPath: localURL.path())[FileAttributeKey.size] as? UInt64
                 let downloadedFile = DownloadedFile(id: self.id, url: localURL, size: Measurement.init(value: fileSize != nil ? Double(fileSize!) : -1.0, unit: UnitInformationStorage.bytes))
+                
+                switch action {
+                    case .copy:
+                        do {
+                            let destinationFileUrl = getOutputDirectoryUrl().appendingPathComponent(localURL.lastPathComponent)
+                            print("Copying to \(destinationFileUrl)...")
+                            try FileManager.default.copyItem(at: localURL, to: destinationFileUrl)
+                            print("Copied.")
+                        } catch (let writeError) {
+                            errorMessage.wrappedValue = writeError.localizedDescription
+                        }
+                    case .move:
+                        do {
+                            let destinationFileUrl = getOutputDirectoryUrl().appendingPathComponent(localURL.lastPathComponent)
+                            print("Moving to \(destinationFileUrl)...")
+                            try FileManager.default.moveItem(at: localURL, to: destinationFileUrl)
+                            print("Moved.")
+                        } catch (let writeError) {
+                            errorMessage.wrappedValue = writeError.localizedDescription
+                        }
+                    case .nothing:
+                        break
+                }
+                
                 downloadedFiles.wrappedValue.append(downloadedFile)
                                                    
                 self.id = self.id + 1
-    //            do {
-    //                deleteFile(errorMessage: nil)
-    //                let destinationFileUrl = getOutputDirectoryUrl().appendingPathComponent("output.txt")
-    //                try FileManager.default.copyItem(at: tempLocalUrl, to: destinationFileUrl)
-    //            } catch (let writeError) {
-    //                errorMessage.wrappedValue = writeError.localizedDescription
-    //            }
             } else {
                 errorMessage.wrappedValue = error?.localizedDescription
             }
@@ -48,21 +66,39 @@ public class Downloader {
     }
     
     func deleteFile(id: Int, downloadedFiles: Binding<[DownloadedFile]>, errorMessage: Binding<String?>) {
-        downloadedFiles.wrappedValue = downloadedFiles.wrappedValue.filter{
-            let found = $0.id != id
-            if found {
-                do {
-                    try FileManager.default.removeItem(at: $0.url)
-                } catch let error {
-                    errorMessage.wrappedValue = error.localizedDescription
-                }
-            }
-            return found
+        guard let index = downloadedFiles.wrappedValue.firstIndex(where: {$0.id == id}) else {
+            errorMessage.wrappedValue = "Could not locate file"
+            return
         }
+        
+        var errorString = ""
+
+        let file = downloadedFiles.wrappedValue[index]
+        
+        do {
+            print("Deleting \(file.url)...")
+            try FileManager.default.removeItem(at: file.url)
+            print("Deleted.")
+        } catch let error {
+            errorString = "[TMP]" + error.localizedDescription
+        }
+
+        do {
+            let destinationFileUrl = getOutputDirectoryUrl().appendingPathComponent(file.url.lastPathComponent)
+            print("Deleting \(destinationFileUrl)...")
+            try FileManager.default.removeItem(at: destinationFileUrl)
+            print("Deleted.")
+        } catch let error {
+            errorString = errorString + "[DOC]" + error.localizedDescription
+        }
+
+        if !errorString.isEmpty {
+            errorMessage.wrappedValue = errorString
+        }
+        
+        downloadedFiles.wrappedValue.remove(at: index)
     }
-    
-    public var downloadTmpUrls: [URL : Measurement<UnitInformationStorage>] = [:]
-    
+
     private var task: URLSessionDownloadTask?
     private var progressObserver: NSKeyValueObservation?
     private var id: Int = 0

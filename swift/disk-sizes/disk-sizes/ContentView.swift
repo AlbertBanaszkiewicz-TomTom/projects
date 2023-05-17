@@ -13,6 +13,12 @@ struct DownloadedFile: Identifiable {
     var size: Measurement<UnitInformationStorage>
 }
 
+enum ActionAfterDownload {
+    case nothing
+    case copy
+    case move
+}
+
 struct ContentView: View {
     func refresh() {
         print("Refreshing...")
@@ -89,7 +95,7 @@ struct ContentView: View {
                     Button("Download") {
                         lastErrorMessage = nil
                         processingQueue.async {
-                            downloader.downloadFile(url: URL(string: amountToDownload)!, downloadProgess: $writeProgess, downloadedFiles: $downloadedFiles, errorMessage: $lastErrorMessage)
+                            downloader.downloadFile(url: URL(string: amountToDownload)!, downloadProgess: $writeProgess, downloadedFiles: $downloadedFiles, action: selectedActionAfterDownload, errorMessage: $lastErrorMessage)
                         }
                     }
                     
@@ -106,6 +112,18 @@ struct ContentView: View {
                 }
                 .disabled(writeProgess != 0.0)
                 
+                HStack {
+                    Text("After download do")
+                    Picker("After download action", selection: $selectedActionAfterDownload) {
+                        ForEach(actionsAfterDownload.sorted { $0.0 < $1.0 }, id: \.key) { key, value in
+                            Text(key).tag(value)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    
+                    Spacer()
+                }
+                .disabled(writeProgess != 0.0)
                 
                 Table(downloadedFiles, selection: $selectedDownloadedFile) {
                     TableColumn("Size in GB") { file in
@@ -141,7 +159,10 @@ struct ContentView: View {
     @State private var lastErrorMessage: String?
     @State private var downloadedFiles: [DownloadedFile] = []
     @State private var selectedDownloadedFile: DownloadedFile.ID?
-    
+    @State private var moveWhenDownloaded = false
+    @State private var copyWhenDownloaded = false
+    @State private var selectedActionAfterDownload = ActionAfterDownload.nothing
+
     private let processingQueue = DispatchQueue(label: "disk_sizes")
     private let amountsToWrite = ["1 GB" : 1,
                                   "5 GB" : 5,
@@ -159,6 +180,10 @@ struct ContentView: View {
                                      "1 GB" : "https://bit.ly/1GB-testfile",
                                      "5 GB": "https://bit.ly/5GB-TESTFILE-ORG",
                                      "10 GB": "https://bit.ly/10GbOVHserver"]
+    private let actionsAfterDownload = ["Nothing" : ActionAfterDownload.nothing,
+                                        "Copy" : ActionAfterDownload.copy,
+                                        "Move" : ActionAfterDownload.move]
+    
     private let writer = Writer()
     private let downloader = Downloader()
 }

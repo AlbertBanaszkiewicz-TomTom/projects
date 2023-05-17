@@ -8,7 +8,7 @@
 import Foundation
 
 func getOutputDirectoryUrl() -> URL {
-    FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+    FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
 }
 
 func getAvailableSizeAvailableCapacityForImportantUsageSwift() -> Measurement<UnitInformationStorage>? {
